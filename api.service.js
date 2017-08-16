@@ -16,7 +16,10 @@ const service = (function() {
 
 	return {
 		get(source) {
-			return fetch(base(source));
+			return fetch(base(source), {
+				method: 'GET',
+				headers
+			});
 		},
 
 		post(source, data) {
@@ -29,7 +32,8 @@ const service = (function() {
 
 		'delete': (source) => {
 			return fetch(base(source), {
-				method: 'DELETE'
+				method: 'DELETE',
+				headers
 			});
 		},
 
