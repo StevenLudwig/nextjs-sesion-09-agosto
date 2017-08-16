@@ -12,9 +12,10 @@ class FormComputer extends Component {
 		this._onSubmit = this._onSubmit.bind(this);
 
 		this.state = {
+			id: props._id,
 			name: props.name,
-			model: '',
-			serie: '',
+			model: props.model,
+			serie: props.serie,
 			price: props.price
 		};
 	};
@@ -36,9 +37,18 @@ class FormComputer extends Component {
 		const errors = addComputer(this.state);
 		if (errors.length) return console.log(errors);
 
-		const response = await api.post('computers', this.state);
-		const computer_saved = await response.json();
-		console.log(computer_saved)
+		var response = '';
+		var computer_saved = '';
+
+		if (!this.state.id) {
+			response = await api.post('computers', this.state);
+			computer_saved = await response.json();
+			console.log(computer_saved)
+		} else {
+			response = await api.put(`computers/${ this.state.id }`, this.state);
+			computer_saved = await response.json();
+			console.log(computer_saved);
+		}
 	};
 
 	render() {
@@ -67,11 +77,15 @@ class FormComputer extends Component {
 };
 
 FormComputer.defaultProps = {
-	name: 'SONY',
+	id: '',
+	name: '',
+	model: '',
+	serie: '',
 	price: 0
 };
 
 FormComputer.propTypes = {
+	_id: PropTypes.string,
 	name: PropTypes.string,
 	model: PropTypes.string,
 	serie: PropTypes.string,

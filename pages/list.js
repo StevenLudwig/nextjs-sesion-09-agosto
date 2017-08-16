@@ -1,28 +1,12 @@
 import { Component } from 'react';
 import api from '../api.service';
+import ListComputers from '../components/computers/ListComputers';
 
-
-const Item = props => (
-	<li>{ `${ props.name }: $ ${ props.price }` }</li>
-);
 
 class List extends Component {
 	render() {
 		const { computers } = this.props;
-
-		return (
-			<div>
-				<ul>
-				{
-					computers.map(computer => {
-						return <Item key={ computer._id } { ...computer }></Item>
-					})
-				}
-				</ul> <br/>
-				<a href="/">Home</a> <br/>
-				<a href="/add">Agregar nueva</a>
-			</div>
-		)
+		return <ListComputers computers={ computers } />
 	}
 };
 
