@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch';
 
 
 const service = (function() {
-	const uri = 'http://ec2-52-39-32-242.us-west-2.compute.amazonaws.com/';
+	const uri = '';
 	const version = 'v2';
 
 	const base = function(resource) {
