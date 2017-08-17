@@ -1,3 +1,7 @@
+ecosystem.config.js
+
+api.service.js
+
 .next/
 # Created by https://www.gitignore.io/api/node,macos,linux,windows,sublimetext,visualstudio
 
