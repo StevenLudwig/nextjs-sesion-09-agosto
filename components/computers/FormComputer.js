@@ -2,6 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import api from '../../api.service';
 import { addComputer } from '../../utils/validate.computer';
+import { Form, FormControl, ControlLabel, FormGroup, Button } from 'react-bootstrap';
 
 
 class FormComputer extends Component {
@@ -55,23 +56,34 @@ class FormComputer extends Component {
 		const { name, model, serie, price } = this.state;
 
 		return (
-			<form onSubmit={ this._onSubmit } >
+			<Form onSubmit={ this._onSubmit }>
+				<FormGroup>
+					<ControlLabel>Nombre</ControlLabel>
+					<FormControl name="name" value={ name } onChange={ this._onChange } />
+				</FormGroup>
 
-				<label htmlFor="">Nombre</label>
-				<input type="text" name="name" value={ name } onChange={ this._onChange } />
+				<FormGroup>
+					<ControlLabel>Modelo</ControlLabel>
+					<FormControl name="model" value={ model } onChange={ this._onChange } />
+				</FormGroup>
 
-				<label htmlFor="">Modelo</label>
-				<input type="text" name="model" value={ model } onChange={ this._onChange } />
+				<FormGroup>
+					<ControlLabel>Serie</ControlLabel>
+					<FormControl name="serie" value={ serie } onChange={ this._onChange } />
+				</FormGroup>
 
-				<label htmlFor="">Serie</label>
-				<input type="text" name="serie" value={ serie } onChange={ this._onChange } />
+				<FormGroup>
+					<ControlLabel>Precio</ControlLabel>
+					<FormControl name="price" value={ price } onChange={ this._onChange } />
+				</FormGroup>
 
-				<label htmlFor="">Precio</label>
-				<input type="text" name="price" value={ price } onChange={ this._onChange } />
+				<FormGroup>
+					<Button type="submit" bsStyle="success">Guardar</Button>
+					<Button bsStyle="link" href="/">Home</Button>
+				</FormGroup>
 
-				<button type="submit">Guardar</button>
-				<a href="/">Home</a>
-			</form>
+				Form
+			</Form>
 		)
 	}
 };
