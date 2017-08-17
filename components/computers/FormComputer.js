@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import api from '../../api.service';
 import { addComputer } from '../../utils/validate.computer';
-import { Form, FormControl, ControlLabel, FormGroup, Button } from 'react-bootstrap';
+import { Form, FormControl, ControlLabel, FormGroup, Button, Row, Col } from 'react-bootstrap';
 
 
 class FormComputer extends Component {
@@ -44,16 +44,16 @@ class FormComputer extends Component {
 		if (!this.state.id) {
 			response = await api.post('computers', this.state);
 			computer_saved = await response.json();
-			console.log(computer_saved)
+			alert("Agregado");
 		} else {
 			response = await api.put(`computers/${ this.state.id }`, this.state);
 			computer_saved = await response.json();
-			console.log(computer_saved);
+			alert("Actualizado");
 		}
 	};
 
 	render() {
-		const { name, model, serie, price } = this.state;
+		const { id, name, model, serie, price } = this.state;
 
 		return (
 			<Form onSubmit={ this._onSubmit }>
@@ -77,12 +77,23 @@ class FormComputer extends Component {
 					<FormControl name="price" value={ price } onChange={ this._onChange } />
 				</FormGroup>
 
-				<FormGroup>
-					<Button type="submit" bsStyle="success">Guardar</Button>
-					<Button bsStyle="link" href="/">Home</Button>
-				</FormGroup>
-
-				Form
+				<Row>
+					<Col xs={ 12 } md={ 4 }>
+						<FormGroup>
+							<Button type="submit" bsStyle="success">Guardar</Button>
+						</FormGroup>
+					</Col>
+					{
+						id ? <Col xs={ 12 } md={ 4 }>
+							<Button bsStyle="info" href="/list">Ver lista</Button>
+						</Col> : null
+					}
+					<Col xs={ 12 } md={ 4 }>
+						<FormGroup>
+							<Button bsStyle="link" href="/">Home</Button>
+						</FormGroup>
+					</Col>
+				</Row>
 			</Form>
 		)
 	}

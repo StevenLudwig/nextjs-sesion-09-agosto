@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import api from '../../api.service';
+import { Table, Button } from 'react-bootstrap';
 
 
 const Item = ({ name, model, price, _id, onClick }) => (
@@ -12,7 +13,9 @@ const Item = ({ name, model, price, _id, onClick }) => (
 			<a href={ `/edit/${ _id }` }>Editar</a>
 		</td>
 		<td>
-			<button onClick={ onClick } value={ _id }>Eliminar</button>
+			<Button onClick={ onClick } value={ _id } bsStyle="danger">
+				<span className="glyphicon glyphicon-trash"></span>
+			</Button>
 		</td>
 	</tr>
 );
@@ -42,14 +45,14 @@ class List extends Component {
 
 	render() {
 		return (
-			<table>
+			<Table striped bordered condensed hover>
 				<thead>
 					<tr>
-						<td>Nombre</td>
-						<td>Modelo</td>
-						<td>Precio</td>
-						<td>Editar</td>
-						<td>Eliminar</td>
+						<th>Nombre</th>
+						<th>Modelo</th>
+						<th>Precio</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -59,7 +62,7 @@ class List extends Component {
 					})
 				}
 				</tbody>
-			</table>
+			</Table>
 		)
 	};
 };
